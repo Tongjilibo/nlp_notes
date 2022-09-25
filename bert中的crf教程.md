@@ -8,7 +8,7 @@ CRF是对序列加约束的常见方式，其训练目标是让`golden序列`在
 - Loss表示: 前一项表示所有tag的得分和，后一项表示真实序列tag的得分 $$Loss=-log(P(y|X))=-log(\frac{e^{S(X, y)}}{\sum_{\check{y}\in{Y_x}}{e^{S(X, \check{y})}}})\\=log(\sum_{\check{y}\in{Y_x}}{e^{S(X, \check{y})}})-S(X, y)$$
 
 # 2. 递推公式
-t时刻以 $y_t$ 结尾的路径总得分 = t-1时刻以任意 $y_{t-1}$ 结尾的路径得分 + 转移分数 $T_{y_{t-1}, y_t}$ + 发射分数 $E_{y_t}^{t-1}$
+t时刻以 $y_t$ 结尾的路径总得分 = t-1时刻以任意 $y_{t-1}$ 结尾的路径得分 + 转移分数 $T_{y_{t-1}, y_t}$ + 发射分数 $E_{y_t}^{t-1}$：
 $$A^t_{y_t}=log(\sum_{y_{t-1}}{e^{A^{t-1}_{y_{t-1}}+T_{y_{t-1}, y_t}+E_{y_t}^t}})$$
 
 记录其中tag的状态为 $y_t=i, y_{t-1}=j$ ，可以得到
@@ -53,7 +53,6 @@ import torch
 import torch.autograd as autograd
 import torch.nn as nn
 import torch.optim as optim
-
 torch.manual_seed(1)
 
 
