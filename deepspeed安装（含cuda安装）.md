@@ -16,15 +16,21 @@
 
 ### 1） 驱动安装
 - 安装cuda驱动 `sudo ubuntu-drivers devices`
-- 查看哪个后面有recommand, 比如 `sudo apt install nvidia-driver-520-open`
+  ![devices](./docs/pics/sudo_ubuntu-drivers_devices.png)
+- 查看哪个后面有recommand, 比如 `sudo apt install nvidia-driver-535`
+- 安装后可使用`nvidia-smi`查看
+
+  ![nvidia-smi](./docs/pics/nvidia-smi.png)
 
 ### 2） cudatoolkit(nvidia)安装
-- 包含了`cuda driver`，但是我安装的时候一直报错，于是我只勾选了`cudatoolkit`
 - [cudatoolkit网址](https://developer.nvidia.com/cuda-toolkit-archive), 选择合适的版本，以[12.2为例](https://developer.nvidia.com/cuda-12-2-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&
   ```shell
   wget https://developer.download.nvidia.com/compute/cuda/12.2.0/local_installers/cuda_12.2.0_535.54.03_linux.run
   sudo sh cuda_12.2.0_535.54.03_linux.run`
     ```
+- 包含了`cuda driver`，但是我安装的时候一直报错，于是我只勾选了`cudatoolkit`（下图为网图示例）
+
+  ![cudatoolkit(nvidia)安装](./docs/pics/cudatoolkit(nvidia)安装.png)
 - 安装完成需要配置下环境变量
   ```shell
   # 编辑环境变量
@@ -38,6 +44,8 @@
   source ~/.bashrc
   ```
 - 可使用`nvcc -V`命令，也可以在`/usr/local/`下查询到cuda目录
+  
+  ![nvcc-V](./docs/pics/nvcc-V.png)
 
 ## 2.3 cuda卸载
 - 卸载cuda，注意会连同`cuda driver`一起卸载，卸载后torch不可用，需要重新安装`cuda driver`
@@ -52,4 +60,5 @@
 
 ## 4. Reference
 - [RuntimeError: Error building extension 'fused_adam'](https://github.com/microsoft/DeepSpeed/issues/4889)
+- [linux环境安装cuda toolkit](https://blog.csdn.net/leo0308/article/details/136414444)
 - [安装NVIDIA驱动出现: An NVIDIA kernel module ‘nvidia-drm‘](https://blog.csdn.net/w09103419/article/details/112303385)
